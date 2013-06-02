@@ -19,7 +19,7 @@
     "coffee-script": "~1.6.2",
     "markdown": "0.4.0",
     "node-sassy": "~0.0.1",
-    "node-watch": "git+https://github.com/xdissent/node-watch#close"
+    "node-watch": "git+https://github.com/xdissent/node-watch#coffee"
   },
   "devDependencies": {
     "express.io": "1.1.8",
