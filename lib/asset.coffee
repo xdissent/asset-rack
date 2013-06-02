@@ -107,7 +107,8 @@ class exports.Asset extends EventEmitter
         
             # Does the file watching
             if @watch
-                @watcher = watch @toWatch, (filename) =>
+                opts = minInterval: 500, maxInterval: 1000
+                @watcher = watch @toWatch, opts, (filename) =>
                     @watcher.close()
                     @completed = false
                     @assets = false
