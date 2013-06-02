@@ -5,7 +5,7 @@
 async = require 'async'
 crypto = require 'crypto'
 pathutil = require 'path'
-fs = require 'fs'
+watch = require 'node-watch'
 zlib = require 'zlib'
 mime = require 'mime'
 {extend} = require './util'
@@ -107,13 +107,12 @@ class exports.Asset extends EventEmitter
         
             # Does the file watching
             if @watch
-                @watcher = fs.watch @toWatch, (event, filename) =>
-                    if event is 'change'
-                        @watcher.close()
-                        @completed = false
-                        @assets = false
-                        process.nextTick =>
-                            @emit 'start'
+                @watcher = watch @toWatch, (filename) =>
+                    @watcher.close()
+                    @completed = false
+                    @assets = false
+                    process.nextTick =>
+                        @emit 'start'
 
         # Listen for errors and throw if no listeners
         @on 'error', (error) =>
